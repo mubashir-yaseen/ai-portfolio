@@ -9,12 +9,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, ...props }, ref) => {
     const base = "px-4 py-2 rounded font-medium";
 
-    let style: string = "";
-    if (variant === "outline") {
-      style = "border border-blue-600 text-blue-600 hover:bg-blue-50";
-    } else if (variant === "ghost") {
-      style = "hover:bg-blue-50";
-    }
+    // Always set to a string — never undefined
+    const style: string =
+      variant === "outline"
+        ? "border border-blue-600 text-blue-600 hover:bg-blue-50"
+        : variant === "ghost"
+        ? "hover:bg-blue-50"
+        : "";
 
     return (
       <button
