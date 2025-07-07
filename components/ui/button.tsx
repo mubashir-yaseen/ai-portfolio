@@ -9,8 +9,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, ...props }, ref) => {
     const base = "px-4 py-2 rounded font-medium";
 
-    // Always set to a string — never undefined
-    const style: string =
+    // Optional chaining removed, always assign a string
+    const style =
       variant === "outline"
         ? "border border-blue-600 text-blue-600 hover:bg-blue-50"
         : variant === "ghost"
@@ -20,7 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        className={cn(base, style, className)}
+        className={cn(base, style, className || "")}
         {...props}
       />
     );
